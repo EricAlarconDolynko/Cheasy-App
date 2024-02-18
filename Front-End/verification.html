@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheasy</title>
+<style>
+    body {
+        background-color: #ffffcc; /* Soft yellow background */
+        font-family: 'Times New Roman', Times, serif; /* Title font */
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff; /* White container background */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .header {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .textbox {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50; /* Green button background */
+        color: #fff;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 10px; /* Add margin to the bottom */
+    }
+
+    .button:hover {
+        background-color: #45a049; /* Darker green on hover */
+    }
+
+    /* Grid styling */
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+    }
+
+    /* File label styling */
+    .file-label {
+        font-size: 14px;
+        color: #555;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Cheasy</h1>
+    <div class="header">Instructions: Please enter the token and upload the document that you want to validate</div>
+    <input type="text" class="textbox" placeholder="Enter token...">
+    <input type="file" id="fileInput" style="display: none;" onchange="displayFileName()">
+    <label for="fileInput" class="button">Upload</label>
+    <span id="fileNameLabel" class="file-label"></span> <!-- File name label -->
+    <button class="button" onclick="showTextboxes()">Verify</button>
+    <div id="textboxContainer" class="grid-container" style="display: none;">
+        <!-- Textboxes will be dynamically added here -->
+    </div>
+</div>
+
+<script>
+    function displayFileName() {
+        const fileInput = document.getElementById('fileInput');
+        const fileNameLabel = document.getElementById('fileNameLabel');
+        const fileName = fileInput.files[0].name;
+        fileNameLabel.textContent = `Selected file: ${fileName}`;
+    }
+
+    function showTextboxes() {
+        // Clear existing textboxes
+        document.getElementById('textboxContainer').innerHTML = '';
+
+        // Header labels
+        const headers = [
+            "Matricula del inmueble",
+            "Nombre del Propietario",
+            "NIT del Propietario",
+            "Fecha de Liquidación",
+            "Estado de Propiedad",
+            "Detalles Adicionales"
+        ];
+
+        // Create and append textboxes with headers
+        headers.forEach(header => {
+            const textbox = document.createElement('input');
+            textbox.setAttribute('type', 'text');
+            textbox.setAttribute('class', 'textbox');
+            textbox.setAttribute('placeholder', header);
+            document.getElementById('textboxContainer').appendChild(textbox);
+        });
+
+        // Show the textbox container
+        document.getElementById('textboxContainer').style.display = 'grid';
+    }
+</script>
+
+</body>
+</html>

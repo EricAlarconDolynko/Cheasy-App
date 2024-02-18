@@ -1,8 +1,11 @@
-import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
+import { Connection, PublicKey, clusterApiUrl} from "@solana/web3.js";
+import "@solana/spl-token";
 
-const connection = new Connection(clusterApiUrl("devnet"));
-const address = new PublicKey('CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN');
-const balance = await connection.getBalance(address);
+const tokenMint = await createMint(
+    "https://api.devnet.solana.com",
+    "4Gi7cQZEMWiJ9PtVjTRYT78ehNYCW8XtcU1rLhH7iH3K",
+    "4Gi7cQZEMWiJ9PtVjTRYT78ehNYCW8XtcU1rLhH7iH3K",
+    "4Gi7cQZEMWiJ9PtVjTRYT78ehNYCW8XtcU1rLhH7iH3K",
+    6
+  );
 
-console.log(`The balance of the account at ${address} is ${balance} lamports`); 
-console.log(`✅ Finished!`)

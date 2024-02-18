@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheasy</title>
+<style>
+    body {
+        background-color: #ffffcc; /* Soft yellow background */
+        font-family: 'Times New Roman', Times, serif; /* Title font */
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff; /* White container background */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .header {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50; /* Green button background */
+        color: #fff;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-bottom: 10px; /* Add margin to the bottom */
+    }
+
+    .button:hover {
+        background-color: #45a049; /* Darker green on hover */
+    }
+
+    .random-label {
+        font-size: 14px;
+        color: #555;
+        cursor: pointer;
+        display: none; /* Initially hidden */
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Cheasy</h1>
+    <div class="header">Please upload the file that will be hashed</div>
+    <input type="file" id="fileInput" style="display: none;">
+    <label for="fileInput" class="button">Upload</label>
+    <button class="button" onclick="hashFile()">Hash</button>
+    <div id="fileNameLabel" class="random-label"></div>
+    <div id="randomStringLabel" class="random-label"></div>
+</div>
+
+<script>
+    function hashFile() {
+        // Your hash function logic here
+        // This function will be triggered when the "Hash" button is clicked
+        // For demonstration purposes, generate a random string of length 15
+        const randomString = Math.random().toString(36).substring(2, 50);
+        document.getElementById('randomStringLabel').textContent = `Token generated: ${randomString}`;
+        document.getElementById('randomStringLabel').style.display = 'block'; // Show the random string label
+    }
+
+    document.getElementById('fileInput').addEventListener('change', function() {
+        const file = this.files[0];
+        document.getElementById('fileNameLabel').textContent = `Selected file: ${file.name}`;
+        document.getElementById('fileNameLabel').style.display = 'block'; // Show the file name label
+    });
+</script>
+
+</body>
+</html>
